@@ -1,0 +1,34 @@
+# Archivos de entorno
+client/.env
+server/.env
+
+# Dependencias de Node.js
+client/node_modules/
+server/node_modules/
+
+# Salidas de compilación o build
+client/dist/
+server/dist/
+
+# Logs
+client/*.log
+server/*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Cachés
+client/.cache/
+server/.cache/
+
+# Configuración del editor
+.vscode/
+.idea/
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db
+
+# Otros archivos innecesarios
+*.swp
+*.swo
