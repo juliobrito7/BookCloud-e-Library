@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "install": "cd client && npm install --production=false && cd ../server && npm install",
-    "build":  "npm install && node --max-old-space-size=4096 ./node_modules/.bin/vite build && npm run build --prefix server",
+    "build":  "npm install && npx vite build && npm run build --prefix server",
     "start": "npm run build && npm run start-backend",
     "start-backend": "cd server && npm run start",
     "dev": "concurrently \"npm run dev-backend\" \"npm run dev-frontend\"",
