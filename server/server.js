@@ -2,6 +2,8 @@ import dotenv from "dotenv";
 import express from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import path from "path";
+import { fileURLToPath } from "url";
 
 import authRoutes from "./routes/authRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
@@ -16,20 +18,21 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-const allowedOrigins = process.env.NODE_ENV === "development"
-? ["http://localhost:5173"]
-: ["https://book-cloud-e-library.vercel.app"];
+const allowedOrigins = [
+    process.env.CLIENT_URL || "http://localhost:5173",
+    "https://bookcloud-e-library.onrender.com",
+];
 
 app.use(cors({
-origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin)) {
-    callback(null, true);
-    } else {
-    callback(new Error(`CORS no permitido para el origen: ${origin}`));
-    }
-},
-methods: ['GET', 'POST', 'PUT', 'DELETE'],
-credentials: true,
+    origin: (origin, callback) => {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error(`CORS no permitido para el origen: ${origin}`));
+        }
+    },
+    methods: ['GET', 'POST'],
+    credentials: true,
 }));
 
 app.use(express.json({ limit: '10mb' }));
@@ -41,6 +44,15 @@ app.use("/api/products", productRoutes);
 app.use("/api/cart", cartRoutes);
 app.use("/api/payments", paymentRoutes);
 app.use("/api/analytics", analyticsRoutes);
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+app.use(express.static(path.join(__dirname, "../client/dist")));
+
+app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "../client/dist/index.html"));
+});
 
 app.listen(PORT, () => {
     console.log(`Servidor corriendo en el puerto ${PORT}`)
