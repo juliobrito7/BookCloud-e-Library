@@ -16,10 +16,20 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+const allowedOrigins = process.env.NODE_ENV === "development"
+? ["http://localhost:5173"]
+: ["https://book-cloud-e-library.vercel.app"];
+
 app.use(cors({
-    origin: 'https://book-cloud-e-library.vercel.app',
-    methods: ['GET', 'POST'],
-    credentials: true,
+origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+    callback(null, true);
+    } else {
+    callback(new Error(`CORS no permitido para el origen: ${origin}`));
+    }
+},
+methods: ['GET', 'POST', 'PUT', 'DELETE'],
+credentials: true,
 }));
 
 app.use(express.json({ limit: '10mb' }));
