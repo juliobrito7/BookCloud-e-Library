@@ -6,9 +6,6 @@ server/.env
 client/node_modules/
 server/node_modules/
 
-# Dependencia raíz de Node.js
-node_modules/
-
 # Salidas de compilación o build
 client/dist/
 server/dist/
