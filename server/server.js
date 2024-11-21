@@ -2,8 +2,6 @@ import dotenv from "dotenv";
 import express from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-import path from "path";
-import { fileURLToPath } from "url";
 
 import authRoutes from "./routes/authRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
@@ -44,15 +42,6 @@ app.use("/api/products", productRoutes);
 app.use("/api/cart", cartRoutes);
 app.use("/api/payments", paymentRoutes);
 app.use("/api/analytics", analyticsRoutes);
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-app.use(express.static(path.join(__dirname, "../client/dist")));
-
-app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../client/dist/index.html"));
-});
 
 app.listen(PORT, () => {
     console.log(`Servidor corriendo en el puerto ${PORT}`)
