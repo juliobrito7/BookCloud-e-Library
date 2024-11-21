@@ -2,6 +2,7 @@ import dotenv from "dotenv";
 import express from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import path from "path";
 
 import authRoutes from "./routes/authRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
@@ -16,9 +17,12 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+const __dirname = path.resolve();
+
+const isProduction = process.env.NODE_ENV === "production";
 const allowedOrigins = [
     process.env.CLIENT_URL || "http://localhost:5173",
-    "https://book-cloud-e-library.vercel.app",
+    "https://bookcloud-e-library.onrender.com",
 ];
 
 app.use(cors({
@@ -42,6 +46,14 @@ app.use("/api/products", productRoutes);
 app.use("/api/cart", cartRoutes);
 app.use("/api/payments", paymentRoutes);
 app.use("/api/analytics", analyticsRoutes);
+
+if (isProduction) {
+    app.use(express.static(path.join(__dirname, "/frontend/dist")));
+
+    app.get("*", (req, res) => {
+        res.sendFile(path.resolve(__dirname, "frontend", "dist", "index.html"));
+    });
+}
 
 app.listen(PORT, () => {
     console.log(`Servidor corriendo en el puerto ${PORT}`)
