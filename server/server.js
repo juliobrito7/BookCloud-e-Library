@@ -18,7 +18,7 @@ const PORT = process.env.PORT || 3000;
 
 const allowedOrigins = [
     process.env.CLIENT_URL || "http://localhost:5173",
-    "https://bookcloud-e-library.onrender.com",
+    "https://book-cloud-e-library.vercel.app",
 ];
 
 app.use(cors({
