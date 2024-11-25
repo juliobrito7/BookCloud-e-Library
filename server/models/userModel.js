@@ -2,21 +2,43 @@ import bcrypt from "bcryptjs";
 import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
-    name:{
+    name: {
         type: String,
-        required: [true,"El nombre es requerido"],
+        required: [true, "El nombre es requerido"],
+        trim: true,
+        validate: {
+            validator: function (value) {
+                const nameRegex = /^[a-zA-ZÀ-ÿ]+( [a-zA-ZÀ-ÿ]+){0,2}$/;
+                return nameRegex.test(value);
+            },
+            message: "El nombre debe contener solo letras y un solo espacio.",
+        },
     },
-    email:{
+    email: {
         type: String,
-        required: [true,"El correo electrónico es requerido"],
+        required: [true, "El correo electrónico es requerido"],
         unique: true,
         lowercase: true,
         trim: true,
+        validate: {
+            validator: function (value) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return emailRegex.test(value);
+            },
+            message: "El correo electrónico no es válido.",
+        },
     },
-    password:{
+    password: {
         type: String,
-        required: [true,"La contraseña es requerida"],
-        minLength: [6,"La contraseña debe tener al menos 6 caracteres"],
+        required: [true, "La contraseña es requerida"],
+        minLength: [6, "La contraseña debe tener al menos 6 caracteres"],
+        validate: {
+            validator: function (value) {
+                const passwordRegex = /^[a-zA-Z0-9]+$/;
+                return passwordRegex.test(value);
+            },
+            message: "La contraseña solo puede contener letras y números, sin espacios.",
+        },
     },
     cartItems:[
         {
