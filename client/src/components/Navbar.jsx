@@ -20,7 +20,7 @@ const NavBar = () => {
 
             <nav className='flex flex-wrap items-center gap-4'>
                 <Link to={"/"} className='text-gray-300 hover:text-emerald-400 transition duration-300 ease-in-out'>Inicio</Link>
-                {user && (
+                {user && user.role !== "admin" &&(
                     <Link to="/cart" className='relative group text-gray-300 hover:text-emerald-400 transition duration-300 ease-in-out'>
                         <ShoppingCart className='inline-block mr-1 group-hover:text-emerald-400' size={20} />
                         <span className='hidden sm:inline'>Carrito</span>

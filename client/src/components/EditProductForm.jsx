@@ -20,6 +20,11 @@ const EditProductForm = () => {
         price: "",
         category: "",
         image: "",
+        ISBN: "",
+		language: "",
+		publisher: "",
+		numberPages: "",
+		publicationDate: "",
     });
 	const [isImageUploaded, setIsImageUploaded] = useState(false);
 
@@ -163,6 +168,86 @@ const EditProductForm = () => {
                             </option>
                         ))}
                     </select>
+                </div>
+
+                 {/* ISBN */}
+                <div>
+                    <label htmlFor="ISBN" className="block text-sm font-medium text-gray-300">
+                        ISBN
+                    </label>
+                    <input
+                        type="text"
+                        id="ISBN"
+                        name="ISBN"
+                        value={productData.ISBN}
+                        onChange={handleChange}
+                        className="mt-1 block w-full bg-gray-700 border border-gray-600 rounded-md shadow-sm py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+                        required
+                    />
+                </div>
+
+                {/* Language */}
+                <div>
+                    <label htmlFor="language" className="block text-sm font-medium text-gray-300">
+                        Idioma
+                    </label>
+                    <input
+                        type="text"
+                        id="language"
+                        name="language"
+                        value={productData.language}
+                        onChange={handleChange}
+                        className="mt-1 block w-full bg-gray-700 border border-gray-600 rounded-md shadow-sm py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+                        required
+                    />
+                </div>
+
+                {/* Publisher */}
+                <div>
+                    <label htmlFor="publisher" className="block text-sm font-medium text-gray-300">
+                        Editorial
+                    </label>
+                    <input
+                        type="text"
+                        id="publisher"
+                        name="publisher"
+                        value={productData.publisher}
+                        onChange={handleChange}
+                        className="mt-1 block w-full bg-gray-700 border border-gray-600 rounded-md shadow-sm py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+                        required
+                    />
+                </div>
+
+                {/* Number Pages */}
+                <div>
+                    <label htmlFor="numberPages" className="block text-sm font-medium text-gray-300">
+                        Número de páginas
+                    </label>
+                    <input
+                        type="number"
+                        id="numberPages"
+                        name="numberPages"
+                        value={productData.numberPages}
+                        onChange={handleChange}
+                        className="mt-1 block w-full bg-gray-700 border border-gray-600 rounded-md shadow-sm py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+                        required
+                    />
+                </div>
+
+                {/* Publication Date */}
+                <div>
+                    <label htmlFor="publicationDate" className="block text-sm font-medium text-gray-300">
+                        Fecha de publicación
+                    </label>
+                    <input
+                        type="date"
+                        id="publicationDate"
+                        name="publicationDate"
+                        value={productData.publicationDate}
+                        onChange={handleChange}
+                        className="mt-1 block w-full bg-gray-700 border border-gray-600 rounded-md shadow-sm py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500"
+                        required
+                    />
                 </div>
 
                 {/* Image Upload */}

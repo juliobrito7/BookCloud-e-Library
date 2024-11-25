@@ -39,7 +39,7 @@ export const getFeaturedProducts = async (req, res) => {
 
 export const createProduct = async (req, res) => {
     try {
-        const {name, author, description, price, image, category} = req.body;
+        const {name, author, description, price, image, category, ISBN, language, publisher, numberPages, publicationDate} = req.body;
 
         let cloudinaryResponse = null;
 
@@ -53,7 +53,12 @@ export const createProduct = async (req, res) => {
                 description,
                 price,
                 image: cloudinaryResponse.secure_url ? cloudinaryResponse.secure_url : "",
-                category
+                category,
+                ISBN,
+                language,
+                publisher,
+                numberPages,
+                publicationDate
             });
 
             res.status(201).json(product);
@@ -105,7 +110,10 @@ export const getRecommendedProducts = async (req, res) => {
                     author: 1,
                     description: 1,
                     image: 1,
-                    price: 1
+                    price: 1,
+                    category: 1,
+                    ISBN: 1,
+                    language: 1
                 }
             }
         ]);

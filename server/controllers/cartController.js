@@ -19,6 +19,10 @@ export const getCartProducts = async (req, res) => {
 
 export const addToCart = async (req, res) => {
     try {
+        if (req.user.role === "admin") {
+            return res.status(403).json({ message: "Los administradores no pueden usar el carrito" });
+        }
+        
         const { productId } = req.body;
         const user = req.user;
 

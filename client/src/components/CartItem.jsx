@@ -8,8 +8,13 @@ const CartItem = ({ item }) => {
 		<div className='rounded-lg border p-4 shadow-sm border-gray-700 bg-gray-800 md:p-6'>
 			<div className='space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0'>
 				<div className='shrink-0 md:order-1'>
-					<img className='h-20 md:h-32 rounded object-cover' src={item.image} alt={item.name} />
-					<p className='mt-2 text-sm text-gray-400 text-center'>Autor: {item.author}</p>
+					<img className='h-28 md:h-40 rounded object-cover mx-auto transform transition-transform duration-300 ease-in-out hover:scale-110' src={item.image} alt={item.name} />
+					<p className='mt-2 text-sm text-gray-300 text-center'>Autor: {item.author}</p>
+					<p className='mt-2 text-sm text-gray-300 text-center'>ISBN: {item.ISBN}</p>
+					<p className='mt-2 text-sm text-gray-300 text-center'>Editorial: {item.publisher}</p>
+					<p className='mt-2 text-sm text-gray-300 text-center'>Idioma: {item.language}</p>
+					<p className='mt-2 text-sm text-gray-300 text-center'>Número de páginas: {item.numberPages}</p>
+					<p className='mt-2 text-sm text-gray-300 text-center'>Fecha de publicación: {new Date(item.publicationDate).toISOString().split('T')[0].split('-').reverse().join('/')}</p>
 				</div>
 				<label className='sr-only'>Elegir cantidad:</label>
 				

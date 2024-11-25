@@ -29,6 +29,27 @@ const productSchema = new mongoose.Schema({
     isFeatured:{
         type: Boolean,
         default: false
+    },
+    ISBN: {
+        type: String,
+        required: true
+    },
+    language: {
+        type: String,
+        required: true
+    },
+    publisher: {
+        type: String,
+        required: true
+    },
+    numberPages: {
+        type: Number,
+        required: true
+    },
+    publicationDate: {
+        type: String,
+        required: true,
+        match: /^\d{4}-\d{2}-\d{2}$/
     }
 },
 { timestamps: true }

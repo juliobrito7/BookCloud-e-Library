@@ -34,6 +34,11 @@ export const useCartStore = create((set, get) => ({
 },
 
     addToCart: async (product) => {
+        const userRole = get().user?.role;
+        if (userRole === "admin") {
+            toast.error("Los administradores no pueden agregar productos al carrito");
+            return;
+        }
         try {
             await axios.post("/cart", { productId: product._id });
             toast.success("Producto agregado al carrito");

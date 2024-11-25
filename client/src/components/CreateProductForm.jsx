@@ -13,6 +13,11 @@ const CreateProductForm = () => {
 		price: "",
 		category: "",
 		image: "",
+		ISBN: "",
+		language: "",
+		publisher: "",
+		numberPages: "",
+		publicationDate: "",
 	});
 
 	const { createProduct, loading } = useProductStore();
@@ -21,7 +26,7 @@ const CreateProductForm = () => {
 		e.preventDefault();
 		try {
 			await createProduct(newProduct);
-			setNewProduct({ name: "", author: "", description: "", price: "", category: "", image: "" });
+			setNewProduct({ name: "", author: "", description: "", price: "", category: "", image: "", ISBN: "", language: "", publisher: "", numberPages: "", publicationDate: "" });
 		} catch {
 			console.log("Error al crear un producto");
 		}
@@ -62,6 +67,41 @@ const CreateProductForm = () => {
 						Autor
 					</label>
 					<input type='text' id='author' name='author' value={newProduct.author} onChange={(e) => setNewProduct({ ...newProduct, author: e.target.value })} className='mt-1 block w-full  bg-gray-700 border  border-gray-600 rounded-md shadow-sm py-2 px-3  text-white focus:outline-none focus:ring-2 	focus:ring-emerald-500  focus:border-emerald-500' required/>
+				</div>
+
+				<div>
+					<label htmlFor='ISBN' className='block text-sm font-medium text-gray-300'>
+						ISBN
+					</label>
+					<input type='text' id='ISBN' name='ISBN' value={newProduct.ISBN} onChange={(e) => setNewProduct({ ...newProduct, ISBN: e.target.value })} className='mt-1 block w-full bg-gray-700 border border-gray-600 rounded-md shadow-sm py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500' required/>
+				</div>
+
+				<div>
+					<label htmlFor='language' className='block text-sm font-medium text-gray-300'>
+						Idioma
+					</label>
+					<input type='text' id='language' name='language' value={newProduct.language} onChange={(e) => setNewProduct({ ...newProduct, language: e.target.value })} className='mt-1 block w-full bg-gray-700 border border-gray-600 rounded-md shadow-sm py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500' required/>
+				</div>
+
+				<div>
+					<label htmlFor='publisher' className='block text-sm font-medium text-gray-300'>
+						Editorial
+					</label>
+					<input type='text' id='publisher' name='publisher' value={newProduct.publisher} onChange={(e) => setNewProduct({ ...newProduct, publisher: e.target.value })} className='mt-1 block w-full bg-gray-700 border border-gray-600 rounded-md shadow-sm py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500' required/>
+				</div>
+
+				<div>
+					<label htmlFor='numberPages' className='block text-sm font-medium text-gray-300'>
+						Número de páginas
+					</label>
+					<input type='number' id='numberPages' name='numberPages' value={newProduct.numberPages} onChange={(e) => setNewProduct({ ...newProduct, numberPages: e.target.value })} className='mt-1 block w-full bg-gray-700 border border-gray-600 rounded-md shadow-sm py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500' required/>
+				</div>
+
+				<div>
+					<label htmlFor='publicationDate' className='block text-sm font-medium text-gray-300'>
+						Fecha de publicación
+					</label>
+					<input type='date' id='publicationDate' name='publicationDate' value={newProduct.publicationDate} onChange={(e) => setNewProduct({ ...newProduct, publicationDate: e.target.value })} className='mt-1 block w-full bg-gray-700 border border-gray-600 rounded-md shadow-sm py-2 px-3 text-white focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500' required/>
 				</div>
 
 				<div>
