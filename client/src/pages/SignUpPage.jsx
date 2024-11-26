@@ -39,7 +39,7 @@ const SignUpPage = () => {
             if (value.length < 6) {
                 error = "La contraseña debe tener al menos 6 caracteres.";
             } else if (!passwordRegex.test(value)) {
-                error = "La contraseña solo puede contener letras y números, sin espacios.";
+                error = "La contraseña solo puede contener letras y números";
             }
         }
     

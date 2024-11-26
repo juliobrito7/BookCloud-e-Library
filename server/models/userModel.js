@@ -37,7 +37,7 @@ const userSchema = new mongoose.Schema({
                 const passwordRegex = /^[a-zA-Z0-9]+$/;
                 return passwordRegex.test(value);
             },
-            message: "La contraseña solo puede contener letras y números, sin espacios.",
+            message: "La contraseña solo puede contener letras y números.",
         },
     },
     cartItems:[
