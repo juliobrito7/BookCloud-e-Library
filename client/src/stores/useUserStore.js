@@ -46,12 +46,6 @@ export const useUserStore = create((set, get) => ({
 
     checkAuth: async () => {
         set({ checkingAuth: true });
-		const token = localStorage.getItem('access-token');
-
-    if (!token) {
-        set({ checkingAuth: false, user: null });
-        return;
-    }
         try {
             const response = await axios.get("/auth/profile");
             set({ user: response.data, checkingAuth: false });
